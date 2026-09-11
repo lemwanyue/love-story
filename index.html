@@ -161,6 +161,132 @@ audio{width:100%;margin-top:14px}
 .timeline-photo img{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;}
 .photo-event.open .photo-hint{background:#f7efeb;}
 </style>
+
+<style>
+/* Anniversary homepage — original soft romantic background */
+.hero {
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(191, 125, 139, .13), transparent 34%),
+    radial-gradient(circle at 82% 78%, rgba(109, 57, 70, .08), transparent 36%),
+    #fbf7f2 !important;
+  color: #70434d !important;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255,255,255,.38) 48%, transparent 100%);
+  opacity: .65;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(90%, 620px);
+  padding: 40px 0;
+}
+.hero-kicker {
+  font-size: .7rem;
+  letter-spacing: .28em;
+  opacity: .55;
+  margin-bottom: 24px;
+  animation: heroIn .9s ease both;
+}
+.hero-title {
+  margin: 0;
+  font-size: clamp(2.25rem, 9vw, 4.4rem);
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: #713f4b;
+  animation: heroIn 1s ease both .15s;
+}
+.together-wrap {
+  margin-top: 32px;
+  animation: heroIn 1s ease both .45s;
+}
+.together-label {
+  font-size: .76rem;
+  letter-spacing: .16em;
+  opacity: .58;
+  margin-bottom: 7px;
+}
+.together-days {
+  font-size: clamp(1.65rem, 6vw, 2.35rem);
+  letter-spacing: .06em;
+  font-weight: 400;
+  color: #8b5964;
+}
+.hero-message {
+  margin-top: 42px;
+  line-height: 2.05;
+  color: #876b70;
+}
+.hero-line {
+  margin: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFade 1s ease forwards;
+}
+.hero-line-1 { animation-delay: .9s; }
+.hero-line-2 { animation-delay: 1.35s; }
+.hero-line-3 { animation-delay: 1.8s; }
+.hero-line-4 {
+  animation-delay: 2.25s;
+  font-size: 1.22rem;
+  font-weight: 500;
+  color: #70434d;
+}
+.hero-heart {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  color: #9b6571;
+  opacity: 0;
+  animation: heroFade 1s ease forwards 2.7s;
+}
+.hero-button {
+  margin-top: 46px;
+  padding: 14px 28px;
+  border: 1px solid rgba(112, 67, 77, .28);
+  border-radius: 999px;
+  background: rgba(255,255,255,.46);
+  color: #70434d;
+  font: inherit;
+  cursor: pointer;
+  opacity: 0;
+  animation: heroFade 1s ease forwards 3.15s;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.hero-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 8px 25px rgba(112,67,77,.08);
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .hero-content { padding: 30px 0; }
+  .hero-title { font-size: 2.35rem; }
+  .together-wrap { margin-top: 25px; }
+  .hero-message { margin-top: 35px; }
+  .hero-line-4 { font-size: 1.12rem; }
+  .hero-button { margin-top: 40px; }
+}
+</style>
+
 </head>
 <body>
 
@@ -181,13 +307,26 @@ audio{width:100%;margin-top:14px}
 
 <main>
 <section class="hero" id="home">
-  <div class="hero-inner">
-    <div class="eyebrow">24.09.2024 — 24.09.2026</div>
-    <h1>To my favourite person ♡</h1>
-    <h2>两年了，还是你。</h2>
-    <div class="days">我们已经在一起 <strong id="days">730</strong> 天</div>
-    <p>有些日子会过去，有些人却会一直留在心里。</p><br>
-    <button class="cta" onclick="document.querySelector('#story').scrollIntoView()">打开我们的回忆 ♡</button>
+  <div class="hero-content">
+    <div class="hero-kicker">TO MY FAVOURITE PERSON ♡</div>
+    <h1 class="hero-title">原来，爱真的会有以后</h1>
+
+    <div class="together-wrap">
+      <div class="together-label">我们已经在一起</div>
+      <div class="together-days"><span id="togetherDays">—</span> 天</div>
+    </div>
+
+    <div class="hero-message">
+      <p class="hero-line hero-line-1">我不知道我们的故事会有多长。</p>
+      <p class="hero-line hero-line-2">但我很庆幸，</p>
+      <p class="hero-line hero-line-3">两年以后，</p>
+      <p class="hero-line hero-line-4">故事里的人还是你。</p>
+      <div class="hero-heart">♡</div>
+    </div>
+
+    <button class="hero-button" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+      打开我们的故事 ♡
+    </button>
   </div>
 </section>
 
@@ -462,5 +601,20 @@ function answer(correct){
 
 function toggleTimelinePhoto(el){ el.classList.toggle('open'); }
 </script>
+
+<script>
+(function () {
+  const start = new Date(2024, 8, 24, 0, 0, 0);
+  function updateTogetherDays() {
+    const now = new Date();
+    const days = Math.floor((now.getTime() - start.getTime()) / 86400000);
+    const el = document.getElementById("togetherDays");
+    if (el) el.textContent = Math.max(0, days).toLocaleString();
+  }
+  updateTogetherDays();
+  setInterval(updateTogetherDays, 60000);
+})();
+</script>
+
 </body>
 </html>
